@@ -1,0 +1,1 @@
+Project for Databases 2 course. First relatively complex app in Node.js
