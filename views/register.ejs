@@ -1,0 +1,29 @@
+<% include partials/header %>    
+    
+    <% if(signupMessage){ %>
+<p style="text-align:center; padding-top:40px; color:red;">
+    <%= signupMessage %>
+</p>
+<% }; %>
+<div class="container">
+    <div class="row text-center">
+        <div class="card" style="width:50%; margin:0px auto;">
+            <div class="card-body">
+                <h3 class="card-title">Zarejestruj się</h1>
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" placeholder="Login" name="login">
+                    </div>
+                    <div class="form-group">
+                    <input class="form-control form-control-lg" type="password" placeholder="Haslo" name="password">
+                    </div>
+                    <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="E-mail" name="email">
+                    </div>
+                    <button class="btn btn-success btn-block" style="margin-top:30px;">Zarejestruj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>

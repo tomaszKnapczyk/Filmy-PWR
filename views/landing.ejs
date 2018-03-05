@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+
+<div class="container" style="margin-top:30px;">
+        <header class="jumbotron">
+                <div class="container">
+                <h1>Witaj</h1>
+                <p>Poznaj niesamowite filmy z naszej oferty</p>
+                <a class="btn btn-success btn-lg" href="/register">Zarejestruj się!</a>
+                </div>
+                
+            </header>        
+        
+        <div class="row text-center" >
+            <% movies.forEach(function(movie){ %>
+                <div class="col-md-3 col-sm-6" style=" margin-top:20px;">
+                   <div class="card">
+                       <a href ="/filmy/<%= movie.ID_Film %>"> <img src = "<%= movie.Obrazek %>" class="card-img-top" alt="Film"></a>
+                       <div class="card-body">
+                           <a href ="/filmy/<%= movie.ID_Film %>"> <h3 class="card-title"> <%= movie.Tytul %> </h3></a> 
+                       </div>
+                   </div>
+                </div>
+            <% }); %>
+            </div>
+        
+        
+        <a href="/filmy">Zobacz wszystkie filmy</a>
+</div>
+
+<% include partials/footer %>d

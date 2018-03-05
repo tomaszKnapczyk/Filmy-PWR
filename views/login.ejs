@@ -1,0 +1,26 @@
+<% include partials/header %>    
+    
+    <% if(loginMessage){ %>
+<p style="text-align:center; padding-top:40px; color:red;">
+    <%= loginMessage %>
+</p>
+<% }; %>
+<div class="container">
+    <div class="row text-center">
+        <div class="card" style="width:50%; margin:0px auto;">
+            <div class="card-body">
+                <h3 class="card-title">Zaloguj się</h1>
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" placeholder="Login" name="login">
+                    </div>
+                    <div class="form-group">
+                    <input class="form-control form-control-lg" type="password" placeholder="Haslo" name="password">
+                    </div>
+                    <button class="btn btn-success btn-block" style="margin-top:30px;">Zaloguj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>

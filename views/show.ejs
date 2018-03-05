@@ -1,0 +1,28 @@
+<% include partials/header %>
+    <div class= "container">
+         <div class="row text-center" style="margin-top:50px";>
+             <div class="col-sm-6">
+                 <img src = "<%= film.Obrazek %>">
+             </div>
+             <div class="col-md-6 col-sm-12" style="min-height:100%; display:flex; align-items:center;">
+                 <ul style="list-style-type:none;">
+                     <li><b>Tytul: </b><%= film.Tytul %></li>
+                     <li><b>Opis: </b><%= film.Opis %></li>
+                     <li><b>Gatunek: </b><%= film.Gatunek %></li>
+                     <% if(!isAuthenticated){%>
+                         <li><b>Link: </b><span style="color:red";>Tylko zalogowani użytkownicy mają dostęp do linku</span></li>
+                     <% } else{ %>
+                        <li><b>Link: </b><a href="<%= film.Link_Do_Filmu %>">Klik</a></li>
+                     <% };%>
+                     
+                 </ul>
+             </div>
+    </div>
+
+<% include partials/footer %>
+
+ <% if(!isAuthenticated){%>
+
+            <% } else{ %>
+            
+            <% };%>

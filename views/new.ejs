@@ -1,0 +1,37 @@
+<% include partials/header %>
+<div class="container">
+    
+    
+    <div class="row text-center">
+        <div style="width:50%; margin:0 auto;">
+            <h1 style="padding-top:30px; padding-bottom:10px;">Witaj adminie</h1>
+            <h4 style="padding:15px;">Tutaj możesz dodać film do kolekcji</h4>
+            <form action="/filmy" method="POST">
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="Tytuł" name="tytul" >
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="Obrazek" name="obrazek">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="Rok produkcji">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="Gatunek">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="Reżyser">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="Link do filmu">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control form-control-lg" placeholder="Opis filmu" rows="3"></textarea>
+                </div>
+                <button class="btn btn-success btn-block" style="margin:30px 0 40px 0;">Submit!</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+<% include partials/footer %>

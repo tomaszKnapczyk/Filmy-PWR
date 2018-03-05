@@ -1,0 +1,23 @@
+<% include partials/header %>
+
+
+
+<div class="container">
+    
+    <div class="row text-center" >
+    <% movies.forEach(function(movie){ %>
+        <div class="col-md-3 col-sm-6" style=" margin-top:20px;">
+           <div class="card">
+               <a href ="/filmy/<%=movie.ID_Film%>"> <img src = "<%= movie.Obrazek %>" class="card-img-top" alt="Film"></a>
+               <div class="card-body">
+                  <a href ="/filmy/<%= movie.ID_Film %>"> <h3 class="card-title"> <%= movie.Tytul %> </h3> </a>
+               </div>
+           </div>
+        </div>
+    <% }); %>
+    </div>
+</div>
+
+
+
+<% include partials/footer %>
