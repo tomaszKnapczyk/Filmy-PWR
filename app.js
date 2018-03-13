@@ -39,13 +39,10 @@ var con = mysql.createConnection({
   database: "bazaprojekt"
 });
 
-
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 });
-
-
 
 passport.serializeUser(function(user, done) {
 	done(null, user.id);
@@ -58,19 +55,13 @@ passport.deserializeUser(function(id, done) {
 	});
 });
 
-
-
 //strategia rejestracji----------------------------
-
 passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
         usernameField : 'login',
         passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
+        passReqToCallback : true
     },
     function(req, login, password, done){
-		// find a user whose email is the same as the forms email
-		// we are checking to see if the user trying to login already exists
 		var sql1="select * from Uzytkownik where login = ?"
         con.query(sql1, login ,function(err,rows){
 			if (err)
@@ -107,33 +98,25 @@ passport.use('local-signup', new LocalStrategy({
 
 
 // strategia logowania ------------------------------------
-
 passport.use('local-login', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
         usernameField : 'login',
         passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
-    },
-    function(req, login, password, done) { // callback with email and password from our form
+        passReqToCallback : true
+    function(req, login, password, done) { 
 
          con.query("SELECT * FROM Uzytkownik WHERE login = '" + login + "'",function(err,rows){
 			if (err)
                 return done(err);
 			if (!rows.length) {
-                return done(null, false, req.flash('loginMessage', 'Nie znaleziono uzytkownika!')); // req.flash is the way to set flashdata using connect-flash
+                return done(null, false, req.flash('loginMessage', 'Nie znaleziono uzytkownika!'));
             } 
 			
-			// if the user is found but the password is wrong
             if (!(bcrypt.compareSync(password, rows[0].Haslo)))
-                return done(null, false, req.flash('loginMessage', 'Zle hasło!')); // create the loginMessage and save it to session as flashdata
-			
-            // all is well, return successful user
+                return done(null, false, req.flash('loginMessage', 'Zle hasło!')); 
+
             return done(null, rows[0]);			
 		
 		});
-		
-
-
 }));
 
 app.get("/", function(req,res){
@@ -144,9 +127,6 @@ app.get("/", function(req,res){
         res.render("landing", {movies:result});
         });
 });
-
-
-
 
 app.get("/filmy/:id", function(req,res){
     var sql="SELECT * FROM Film WHERE ID_Film = ?";
@@ -172,9 +152,6 @@ app.get("/filmy", function(req,res){
 });
 
 
-
-
-
 app.get("/filmy/dodaj", function(req,res){
    res.render("new"); 
    if(req.user)
@@ -182,12 +159,9 @@ app.get("/filmy/dodaj", function(req,res){
 });
 
 
-
 app.get("/register", function(req,res){
    res.render("register", {signupMessage:req.flash("signupMessage")});
 });
-
-
 
 app.post('/register', function(){
             passport.authenticate('local-signup', {
@@ -201,15 +175,12 @@ app.get("/login", function(req,res){
    res.render("login", {loginMessage:req.flash("loginMessage")});
 });
     
-
-    
 app.post('/login',
   passport.authenticate('local-login', {
         successRedirect : '/filmy',
         failureRedirect : '/login',
         failureFlash : true // allow flash messages
   }));
-
 
 app.post("/filmy", function(req,res){
     var name=req.body.tytul;
@@ -239,6 +210,3 @@ app.listen(process.env.PORT, process.env.IP, function(){
     console.log("serwer ruszyl");
 
 });
-
-
-
